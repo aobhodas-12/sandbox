@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Event Tracking</title>
+    <script>
+        // Part 1: TikTok Pixel Initialization
+        !function(w,d,t){
+            w.TiktokAnalyticsObject=t;
+            var ttq=w[t]=w[t]||[];
+            ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],
+            ttq.setAndDefer=function(t,e){
+                t[e]=function(){
+                    t.push([e].concat(Array.prototype.slice.call(arguments,0)))
+                }
+            };
+            for(var i=0;i<ttq.methods.length;i++) ttq.setAndDefer(ttq,ttq.methods[i]);
+            ttq.instance=function(t){
+                for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++) ttq.setAndDefer(e,ttq.methods[n]);
+                return e
+            },
+            ttq.load=function(e,n){
+                var i="https://analytics.tiktok.com/i18n/pixel/events.js";
+                ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};
+                var o=d.createElement("script");
+                o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;
+                var a=d.getElementsByTagName("script")[0];
+                a.parentNode.insertBefore(o,a)
+            };
+
+            // Load the TikTok Pixel and track a page view
+            ttq.load('C8JRFTKLGSOAGACE7860');
+            ttq.page();
+            
+            // Part 2: Advanced Matching
+            ttq.identify({
+                email: 'john.doe@example.com',
+                phone: '123-456-7890',
+                gender: 'male',
+                dob: '1990-01-01',
+                city: 'New York',
+                state: 'NY',
+                zip: '10001',
+                country: 'US'
+            });
+        }(window,document,'ttq');
+
+        // Part 3: Purchase Event Tracking
+        function trackPurchase() {
+            ttq.track('Purchase', {
+                order_id: '123456789',
+                value: 99.99,
+                currency: 'USD',
+                content_name: 'Sample Product',
+                content_category: 'Electronics',
+                content_ids: ['1234', '5678'],
+                num_items: 2,
+                predicted_ltv: 500.00,
+                search_string: 'Sample Query',
+                status: 'complete',
+                tax: 9.99,
+                shipping: 10.00,
+                discount: 20.00,
+                affiliation: 'Sample Store',
+                coupon: 'SAVE20',
+                extra_data: {
+                    custom_param_1: 'value_1',
+                    custom_param_2: 'value_2'
+                }
+            });
+        }
+    </script>
+</head>
+    <body>
+      <h1>TikTok Purchase Event Tracking Test</h1>
+      <button onclick="trackPurchase()">Test Purchase Event</button>
+   </body>
+</html>

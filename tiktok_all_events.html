@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TikTok Event Tracking</title>
+        <script>
+            // TikTok Pixel Initialization
+            !function(w,d,t){
+                w.TiktokAnalyticsObject=t;
+                var ttq=w[t]=w[t]||[];
+                ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],
+                ttq.setAndDefer=function(t,e){
+                    t[e]=function(){
+                        t.push([e].concat(Array.prototype.slice.call(arguments,0)))
+                    }
+                };
+                for(var i=0;i<ttq.methods.length;i++) ttq.setAndDefer(ttq,ttq.methods[i]);
+                ttq.instance=function(t){
+                    for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++) ttq.setAndDefer(e,ttq.methods[n]);
+                    return e
+                },
+                ttq.load=function(e,n){
+                    var i="https://analytics.tiktok.com/i18n/pixel/events.js";
+                    ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};
+                    var o=d.createElement("script");
+                    o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;
+                    var a=d.getElementsByTagName("script")[0];
+                    a.parentNode.insertBefore(o,a)
+                };
+
+                // Load the TikTok Pixel and track a page view
+                ttq.load('C8JRFTKLGSOAGACE7860');
+                ttq.page();
+                
+                // Advanced Matching
+                ttq.identify({
+                    email: 'joe.doe@example.com',
+                    phone: '415-555-6789',
+                    gender: 'male',
+                    dob: '1999-09-19',
+                    city: 'San Francisco',
+                    state: 'CA',
+                    zip: '94114',
+                    country: 'US'
+                });
+                }(window,document,'ttq');
+
+                // Event Tracking 
+                function trackAddPaymentInfo() {
+                    ttq.track('AddPaymentInfo', {});
+                }
+
+                function trackAddToCart() {
+                    ttq.track('AddToCart', {
+                        value: 49.99,
+                        currency: 'USD',
+                        content_name: 'Product',
+                        content_category: 'Electronics',
+                        content_ids: ['1234'],
+                        content_type: 'product',
+                        quantity: 1
+                    });
+                }
+
+                function trackAddToWishlist() {
+                    ttq.track('AddToWishlist', {
+                        value: 49.99,
+                        currency: 'USD',
+                        content_name: 'Product',
+                        content_category: 'Electronics',
+                        content_ids: ['1234'],
+                        content_type: 'product'
+                    });
+                }
+
+                function trackClickButton() {
+                    ttq.track('ClickButton', {
+                        button_id: 'sampleButton',
+                        button_text: 'Click me!'
+                    });
+                }
+
+                function trackCompletePayment() {
+                    ttq.track('CompletePayment', {
+                        order_id: '123456789',
+                        value: 99.99,
+                        currency: 'USD',
+                        content_name: 'Product',
+                        content_category: 'Electronics',
+                        content_ids: ['1234', '5678'],
+                        num_items: 2,
+                        predicted_ltv: 500.00,
+                        status: 'complete',
+                        tax: 9.99,
+                        shipping: 10.00,
+                        discount: 20.00,
+                        affiliation: 'Affiliate',
+                        coupon: 'SAVE20'
+                    });
+                }
+
+                function trackCompleteRegistration() {
+                    ttq.track('CompleteRegistration', {
+                        value: 0,
+                        currency: 'USD',
+                        content_name: 'Registration',
+                        status: 'complete'
+                    });
+                }
+
+                function trackContact() {
+                    ttq.track('Contact', {
+                        content_name: 'Contact Us'
+                    });
+                }
+
+                function trackDownload() {
+                    ttq.track('Download', {
+                        content_name: 'Sample App',
+                        content_category: 'Mobile App',
+                        content_ids: ['1'],
+                        content_type: 'app'
+                    });
+                }
+
+                function trackInitiateCheckout() {
+                    ttq.track('InitiateCheckout', {
+                        content_name: 'Product',
+                        content_category: 'Electronics',
+                        content_ids: ['1234'],
+                        num_items: 1,
+                        value: 49.99,
+                        currency: 'USD'
+                    });
+                }
+
+                function trackPlaceAnOrder() {
+                    ttq.track('PlaceAnOrder', {
+                        order_id: '123456789',
+                        value: 99.99,
+                        currency: 'USD',
+                        content_name: 'Product',
+                        content_category: 'Electronics',
+                        content_ids: ['1234', '5678'],
+                        num_items: 2
+                    });
+                }
+
+                function trackSearch() {
+                    ttq.track('Search', {
+                        search_string: 'Search Query',
+                        content_category: 'Electronics'
+                    });
+                }
+
+                function trackSubmitForm() {
+                    ttq.track('SubmitForm', {
+                        content_name: 'Sample Form',
+                        content_category: 'Form'
+                    });
+                }
+
+                function trackSubscribe() {
+                    ttq.track('Subscribe', {
+                        content_name: 'Newsletter',
+                        content_category: 'Subscription',
+                        status: 'complete'
+                    });
+                }
+
+                function trackViewContent() {
+                    ttq.track('ViewContent', {
+                        content_name: 'Product',
+                    content_category: 'Electronics',
+                    content_ids: ['1234'],
+                    content_type: 'product',
+                    value: 49.99,
+                    currency: 'USD'
+                    });
+            }
+        </script>
+    </head>
+    <body>
+        <h1>TikTok Event Tracking Test</h1>
+        <button onclick="trackAddPaymentInfo()">Track Initiate Add Payment Info Event</button> </br>
+        <button onclick="trackAddToCart()">Track Add To Cart Event</button> </br>
+        <button onclick="trackAddToWishlist()">Track Add To Wish List Event</button> </br>
+        <button onclick="trackClickButton()">Track Click Button Event</button> </br>
+        <button onclick="trackCompletePayment()">Track Complete Event</button> </br>
+        <button onclick="trackCompleteRegistration()">Track Complete Registration Event</button> </br>
+        <button onclick="trackContact()">Track Contact Event</button> </br>
+        <button onclick="trackDownload()">Track Download Event</button> </br>
+        <button onclick="trackInitiateCheckout()">Track Initiate Checkout Event</button> </br>
+        <button onclick="trackPlaceAnOrder()">Track Place an Order Event</button> </br>
+        <button onclick="trackSearch()">Track Search Event</button> </br>
+        <button onclick="trackSubmitForm()">Track Submit Form Event</button> </br>
+        <button onclick="trackSubscribe()">Track Subscribe Event</button> </br>
+        <button onclick="trackViewContent()">Track View Content Event</button>
+    </body>
+</html>
+
